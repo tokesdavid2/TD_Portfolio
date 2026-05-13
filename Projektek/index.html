@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EuroScrapbook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="accountBtn">Belépés</div>
+    <div class="loginPanel">
+        <h2>Belépés</h2>
+        <form id="loginForm">
+            <div class="formGroup">
+                <label for="username">Felhasználónév</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="formGroup">
+                <label for="password">Jelszó</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="button" id="loginBtn" class="submitButton">Bejelentkezés</button>
+            <button type="button" id="signupBtn" class="submitButton">Regisztráció</button>
+        </form>
+    </div>
+    <div class="modeTitle" id="modeTitle"></div>
+    <div class="toggleButton" id="toggleButton">
+        <span class="toggleEmoji left">✈️</span>
+        <span class="toggleEmoji right">⭐</span>
+        <div class="toggleSlider"></div>
+    </div>
+    <div class="reviewPopup" id="reviewPopup">
+        <div class="reviewPopupContent">
+            <h3 id="reviewCountryName">Ország neve</h3>
+            <textarea id="reviewTextarea" placeholder="Írd ide a véleményedet..."></textarea>
+            <div class="reviewPopupButtons">
+                <button id="saveReviewBtn" class="saveBtn">Mentés</button>
+                <button id="cancelReviewBtn" class="cancelBtn">Mégse</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="mapContainer">
+            <h3>EuroScrapbook - Digitális emlékkönyv</h3>
+            <button id="loadBtn" class="loadsaveBtn left">Betöltés</button>
+            <button id="saveBtn" class="loadsaveBtn right">Mentés</button>
+            <div id="terkep">
+            </div>
+        </div>
+        <div class="countriesPanel">
+            <h3 id="countriesPanelTitle">Kijelölt országok</h3>
+            <div class="countriesList" id="countriesList">
+                <div class="emptyMessage">Kattints az országokra a térképen a területük kiválasztásához!</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <template id="countryRatingsTemplate">
+        <div class="backButton" onclick="updateCountriesList()">Vissza</div>
+        <div class="countryRatingsHeader">
+            <h4 class="countryName"></h4>
+            <div class="averageRating">
+                <div class="avgStars"></div>
+                <div class="avgScore"></div>
+                <div class="totalRatings"></div>
+            </div>
+        </div>
+        <div class="ratingsContainer"></div>
+    </template>
+    <template id="individualRatingTemplate">
+        <div class="individualRating">
+            <div class="ratingHeader">
+                <span class="ratingUser"></span>
+                <span class="ratingStars"></span>
+            </div>
+            <div class="ratingComment"></div>
+        </div>
+        <div class="ratingSeparator"></div>
+    </template>
+    <template id="noRatingsTemplate">
+        <div class="backButton" onclick="updateCountriesList()">Vissza</div>
+        <div class="countryRatingsHeader">
+            <h4 class="countryName"></h4>
+            <p>Még nincsenek értékelések ehhez az országhoz.</p>
+        </div>
+    </template>
+    <template id="starRatingTemplate">
+        <div class="starRatingContainer">
+            <div class="ratingLabel">Értékelés:</div>
+            <div class="starRating">
+                <span class="star" data-rating="1">☆</span>
+                <span class="star" data-rating="2">☆</span>
+                <span class="star" data-rating="3">☆</span>
+                <span class="star" data-rating="4">☆</span>
+                <span class="star" data-rating="5">☆</span>
+            </div>
+        </div>
+    </template>
+</body>
+</html>
