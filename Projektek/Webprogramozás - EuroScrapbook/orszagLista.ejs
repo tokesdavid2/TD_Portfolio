@@ -1,0 +1,10 @@
+<% if (selectedCountries.length === 0) { %>
+    <div class="emptyMessage">Kattints az országokra a térképen a területük kiválasztásához!</div>
+<% } else { %>
+    <% selectedCountries.forEach(function(id) { %>
+        <div class="countryItem" data-country-id="<%= id %>">
+            <span><%= countryNames[id] || id.toUpperCase() %></span>
+            <button class="removeButton" onclick="removeCountry('<%= id %>')" title="Ország eltávolítása">×</button>
+        </div>
+    <% }) %>
+<% } %>

@@ -1,0 +1,898 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body
+{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, rgb(50, 175, 50) 0%, rgb(50, 50, 175) 100%);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+.accountBtn
+{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    padding: 12px 20px;
+    color: rgb(50, 50, 50);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgb(230, 230, 230);
+    z-index: 1000;
+    font-size: 14px;
+}
+.accountBtn:hover
+{
+    box-shadow: 0 10px 25px rgb(212, 212, 212);
+    background: rgb(255, 255, 255);
+}
+.modeTitle
+{
+    position: fixed;
+    top: 30px;
+    left: 568px;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgb(175, 175, 175);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+.toggleButton
+{
+    position: fixed;
+    top: 20px;
+    right: -1056px;
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(225, 225, 225);
+    border-radius: 25px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgb(225, 225, 225);
+    z-index: 1000;
+    width: 80px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.toggleButton:hover
+{
+    box-shadow: 0 10px 25px rgb(225, 225, 225);
+    background: rgb(255, 255, 255);
+}
+.toggleSlider
+{
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, rgb(225, 225, 225) 0%, rgb(250, 250, 250) 100%);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 2px 8px rgb(200, 200, 200);
+    border: 1px solid rgb(225, 225, 225);
+    z-index: 2;
+}
+.toggleButton.active .toggleSlider
+{
+    transform: translateX(36px);
+}
+.toggleEmoji
+{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+.toggleEmoji.left
+{
+    left: 12px;
+    opacity: 1;
+}
+.toggleEmoji.right
+{
+    right: 8.75px;
+    opacity: 0.4;
+}
+.toggleButton.active .toggleEmoji.left
+{
+    opacity: 0.4;
+}
+.toggleButton.active .toggleEmoji.right
+{
+    opacity: 1;
+}
+.reviewPopup
+{
+    position: fixed;
+    display: none;
+    z-index: 2000;
+    pointer-events: none;
+}
+.reviewPopupContent
+{
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgb(200, 200, 200);
+    border: 1px solid rgb(255, 255, 255);
+    min-width: 300px;
+    max-width: 400px;
+    pointer-events: all;
+    transform: translateY(-10px);
+}
+.reviewPopupContent h3
+{
+    color: rgb(50, 50, 50);
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 20px;
+}
+.starRatingContainer
+{
+    margin-bottom: 15px;
+    text-align: center;
+}
+.ratingLabel
+{
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.starRating
+{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.star
+{
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: rgb(225, 225, 225);
+    user-select: none;
+}
+.star:hover
+{
+    transform: scale(1.1);
+    color: rgb(250, 212, 0);
+}
+.star.active
+{
+    color: rgb(250, 212, 0);
+}
+.reviewPopupContent textarea
+{
+    width: 100%;
+    height: 80px;
+    border: 2px solid rgb(225, 225, 225);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: rgb(255, 255, 255);
+}
+.reviewPopupContent textarea:focus
+{
+    outline: none;
+    border-color: rgb(50, 175, 75);
+    box-shadow: 0 0 0 3px rgb(237, 250, 237);
+}
+.reviewPopupButtons
+{
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+.saveBtn
+{
+    flex: 1;
+    padding: 10px;
+    background: linear-gradient(135deg, rgb(50, 175, 75) 0%, rgb(37, 163, 62) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.saveBtn:hover
+{
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgb(175, 225, 188);
+}
+.cancelBtn
+{
+    flex: 1;
+    padding: 10px;
+    background: linear-gradient(135deg, rgb(113, 113, 113) 0%, rgb(100, 100, 100) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.cancelBtn:hover
+{
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgb(200, 200, 200);
+}
+.loginPanel
+{
+    position: fixed;
+    top: -500px;
+    left: 180px;
+    transform: translateX(-50%);
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 40px rgb(225, 225, 225);
+    width: 320px;
+    border: 1px solid rgb(255, 255, 255);
+    transition: all 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+    z-index: 999;
+}
+.accountBtn:hover + .loginPanel
+{
+    top: 80px;
+}
+.loginPanel:hover
+{
+    top: 80px;
+}
+.loginPanel h2
+{
+    color: rgb(50, 50, 50);
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+}
+.formGroup
+{
+    margin-bottom: 20px;
+}
+.formGroup label
+{
+    display: block;
+    margin-bottom: 8px;
+    color: rgb(87, 87, 87);
+    font-weight: 500;
+}
+.formGroup input
+{
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgb(225, 225, 225);
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: rgb(255, 255, 255);
+}
+.formGroup input:focus
+{
+    outline: none;
+    border-color: rgb(50, 175, 75);
+    box-shadow: 0 0 0 3px rgb(237, 250, 237);
+    transform: translateY(-2px);
+}
+.submitButton
+{
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, rgb(50, 175, 75) 0%, rgb(50, 75, 175) 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+.submitButton:hover
+{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgb(175, 225, 188);
+}
+.container
+{
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+}
+.mapContainer
+{
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgb(225, 225, 225);
+    border: 1px solid rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    height: 100%;
+    width: 60%;
+    margin: 0;
+}
+.loadsaveBtn
+{
+    position: absolute;
+    top: 20px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgb(50, 175, 75), rgb(50, 75, 175));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgb(200, 200, 200);
+}
+.loadsaveBtn.right
+{
+    right: 20px;
+}
+.loadsaveBtn.left
+{
+    left: 20px;
+}
+.loadsaveBtn:hover
+{
+    background: linear-gradient(135deg, rgb(37, 163, 62), rgb(37, 62, 163));
+}
+.countriesPanel
+{
+    background: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgb(225, 225, 225);
+    border: 1px solid rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+    height: 100%;
+    width: 40%;
+    margin: 0;
+}
+.countriesPanel h3
+{
+    color: rgb(50, 50, 50);
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 24px;
+}
+.countriesList
+{
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+.countryItem
+{
+    background: rgb(237, 237, 250);
+    border: 1px solid rgb(200, 200, 225);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.countryItem:hover
+{
+    background: rgb(212, 237, 225);
+    transform: translateX(5px);
+}
+.removeButton
+{
+    background: rgb(250, 113, 113);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.removeButton:hover
+{
+    background: rgb(250, 75, 75);
+    transform: scale(1.1);
+}
+.backButton
+{
+    background: rgb(237, 237, 237);
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 15px;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.backButton:hover
+{
+    background: rgb(225, 225, 225);
+    transform: translateY(-2px);
+}
+.countryRatingsHeader
+{
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgb(250, 237, 175);
+}
+.countryRatingsHeader h4
+{
+    color: rgb(50, 50, 50);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.averageRating
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.avgStars
+{
+    font-size: 24px;
+    color: rgb(250, 212, 0);
+}
+.avgScore
+{
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(225, 125, 37);
+}
+.totalRatings
+{
+    font-size: 15px;
+    color: rgb(125, 138, 138);
+    font-style: italic;
+}
+.ratingsContainer
+{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.ratingSeparator
+{
+    height: 2px;
+    background: rgb(250, 237, 200);
+    margin: 15px 0;
+    border-radius: 1px;
+}
+.individualRating
+{
+    border-radius: 10px;
+    padding: 15px;
+}
+.individualRating:hover
+{
+    transform: translateY(-2px);
+}
+.ratingHeader
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.ratingUser
+{
+    font-weight: 600;
+    color: rgb(50, 50, 50);
+}
+.ratingStars
+{
+    font-size: 20px;
+    color: rgb(250, 212, 0);
+}
+.ratingComment
+{
+    color: rgb(87, 87, 87);
+    font-style: italic;
+    line-height: 1.4;
+}
+.ratingItem
+{
+    background: rgb(250, 250, 225);
+    border: 1px solid rgb(250, 237, 175);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    color: rgb(50, 50, 50);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgb(225, 225, 225);
+}
+.ratingItem:hover
+{
+    background: rgb(250, 237, 200);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgb(225, 225, 225);
+}
+.ratingCountryName
+{
+    font-weight: 700;
+    font-size: 22px;
+    color: rgb(212, 87, 0);
+    text-align: center;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.ratingStars
+{
+    font-size: 30px;
+    text-align: center;
+    margin: 8px 0;
+    line-height: 1;
+}
+.ratingScore
+{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(225, 125, 37);
+    margin: 4px 0;
+}
+.ratingCount
+{
+    font-size: 15px;
+    color: rgb(125, 137, 137);
+    text-align: center;
+    font-style: italic;
+}
+.reviewItem
+{
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    color: rgb(50, 50, 50);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.reviewItem:hover
+{
+    background: rgb(255, 243, 205);
+    transform: translateX(5px);
+}
+.reviewCountryName
+{
+    font-weight: 600;
+    color: rgb(250, 75, 0);
+}
+.reviewText
+{
+    font-size: 15px;
+    color: rgb(87, 87, 87);
+    font-style: italic;
+    line-height: 1.4;
+}
+.emptyMessage
+{
+    text-align: center;
+    color: rgb(100, 100, 100);
+    font-style: italic;
+    margin-top: 50px;
+}
+.mapContainer h3
+{
+    color: rgb(50, 50, 50);
+    margin-bottom: 10px;
+    font-weight: 600;
+    text-align: center;
+    flex-shrink: 0;
+    font-size: 32px;
+}
+#easterEgg {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+    z-index: 10000;
+    pointer-events: auto;
+    left: 620px;
+    top: 505px;
+}
+#terkep
+{
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+#terkep svg
+{
+    width: 121.25% !important;
+    height: 121.25% !important;
+    max-width: none !important;
+    max-height: none !important;
+    display: block !important;
+}
+#terkep:hover
+{
+    transform: scale(1.02);
+}
+@media (max-width: 1024px)
+{
+    .accountBtn
+    {
+        font-size: 12px;
+        padding: 10px 16px;
+    }
+    .modeTitle
+    {
+        font-size: 16px;
+        top: 28px;
+    }
+    .toggleButton
+    {
+        width: 70px;
+        height: 38px;
+    }
+    .toggleSlider
+    {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    .toggleButton.active .toggleSlider
+    {
+        transform: translateX(32px);
+    }
+    .loginPanel
+    {
+        width: 280px;
+        padding: 30px 20px;
+    }
+    .accountBtn:hover + .loginPanel
+    {
+        top: 80px;
+    }
+    .container
+    {
+        top: 76px;
+        padding: 0 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .mapContainer
+    {
+        width: 100%;
+        height: 50%;
+    }
+    .countriesPanel
+    {
+        width: 100%;
+        height: 50%;
+    }
+    .reviewPopupContent
+    {
+        min-width: 250px;
+        max-width: 300px;
+        padding: 15px;
+    }
+    .ratingCountryName
+    {
+        font-size: 20px;
+    }
+    .ratingStars
+    {
+        font-size: 24px;
+    }
+    .ratingScore
+    {
+        font-size: 18px;
+    }
+    .star
+    {
+        font-size: 20px;
+    }
+}
+@media (max-width: 768px)
+{
+    .accountBtn
+    {
+        top: 15px;
+        left: 15px;
+    }
+    .modeTitle
+    {
+        font-size: 14px;
+        top: 25px;
+    }
+    .toggleButton
+    {
+        top: 15px;
+        right: 15px;
+        width: 60px;
+        height: 32px;
+    }
+    .toggleSlider
+    {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+    }
+    .toggleButton.active .toggleSlider
+    {
+        transform: translateX(28px);
+    }
+    .toggleEmoji
+    {
+        font-size: 14px;
+    }
+    .loginPanel
+    {
+        top: -300px;
+        width: 260px;
+        padding: 30px 20px;
+    }
+    .accountBtn:hover + .loginPanel
+    {
+        top: 80px;
+    }
+    .container
+    {
+        top: 73px;
+        bottom: 15px;
+        padding: 0 10px;
+    }
+    .reviewPopupContent
+    {
+        min-width: 220px;
+        max-width: 280px;
+        padding: 12px;
+    }
+    .ratingCountryName
+    {
+        font-size: 17px;
+    }
+    .ratingStars
+    {
+        font-size: 20px;
+    }
+    .ratingScore
+    {
+        font-size: 16px;
+    }
+    .star
+    {
+        font-size: 18px;
+    }
+}
+#terkep path
+{
+    fill: rgb(237, 237, 250);
+    stroke: rgb(37, 62, 75);
+    stroke-width: 0.5;
+    transition: all 0.3s ease;
+}
+#terkep path:hover
+{
+    fill: rgb(50, 175, 75);
+    stroke: rgb(50, 75, 175);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 8px rgb(250, 212, 0));
+    cursor: pointer;
+}
+#terkep path.selected
+{
+    fill: rgb(50, 75, 175) !important;
+    stroke: rgb(50, 75, 175);
+    stroke-width: 1.5;
+}
+#terkep path.reviewed
+{
+    fill: rgb(250, 212, 0) !important;
+    stroke: rgb(250, 163, 0);
+    stroke-width: 1.5;
+}
+#terkep path.rated
+{
+    stroke: rgb(37, 62, 75);
+    stroke-width: 1;
+    transition: all 0.3s ease;
+}
+#terkep path.non-european
+{
+    opacity: 0.5;
+    cursor: not-allowed !important;
+}
+#terkep path.non-european:hover {
+    fill: rgb(225, 225, 225) !important;
+    stroke: rgb(37, 62, 75) !important;
+    stroke-width: 0.5 !important;
+    filter: none !important;
+}
+.countriesList::-webkit-scrollbar
+{
+    width: 6px;
+}
+.countriesList::-webkit-scrollbar-track
+{
+    background: rgb(225, 225, 225);
+    border-radius: 3px;
+}
+.countriesList::-webkit-scrollbar-thumb
+{
+    background: rgb(150, 163, 212);
+    border-radius: 3px;
+}
+.countriesList::-webkit-scrollbar-thumb:hover
+{
+    background: rgb(113, 125, 200);
+}
